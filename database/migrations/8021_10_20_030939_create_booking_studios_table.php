@@ -18,6 +18,7 @@ class CreateBookingStudiosTable extends Migration
             $table->unsignedBigInteger('studio_id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('email');
             $table->string('studio_name');
             $table->string('studio_price');
             $table->date('date');

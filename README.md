@@ -2,6 +2,10 @@
 
 berikut ini ada beberapa endpoint yang dibuat untuk aplikasi syncphonic"
 
+## Link Dokumentasi
+
+https://documenter.getpostman.com/view/9474608/UV5ZBbq2
+
 ## Routes
 
 ```

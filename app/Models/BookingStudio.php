@@ -14,6 +14,7 @@ class BookingStudio extends Model
     'studio_id',
     'user_id',
     'name',
+    'email',
     'studio_name',
     'studio_price',
     'date'.

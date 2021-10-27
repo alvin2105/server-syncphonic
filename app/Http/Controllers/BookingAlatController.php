@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\BookingStudio;
+use App\Models\BookingAlat;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
-class BookingStudioController extends Controller
+class BookingAlatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,28 +14,26 @@ class BookingStudioController extends Controller
      */
     public function index()
     {
-        return BookingStudio::all();
-      
+        return BookingAlat::all();
     }
 
     
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createBookingStudio(Request $request)
+    public function createBookingInstrument(Request $request)
     {
-        $book = new BookingStudio();
+        $book = new BookingAlat();
         $book->name = $request->name;
+        $book->instrument_name = $request->instrument_name;
         $book->email = $request->email;
-        $book->studio_name = $request->studio_name;
-        $book->studio_price = $request->studio_price;
+        $book->instrument_price = $request->instrument_price;
         $book->date = $request->date;
         $book->duration = $request->duration;
-        $book->studio_id = $request->studio_id;
+        $book->instrument_id = $request->instrument_id;
         $book->user_id = $request->user_id;
         $book->total= $request->total;
 
@@ -55,11 +52,11 @@ class BookingStudioController extends Controller
     }
 
  // melihat list booking user tertentu
- public function MyBookingStudio($name){
+ public function MyBookingInstrument($name){
         
     // return Booking::find($id);
-    $mybooking = BookingStudio::where('name', 'like', '%'.$name.'%')->get();
-    $count = BookingStudio::where('name', 'like', '%'.$name.'%')->get()->count();
+    $mybooking = BookingAlat::where('name', 'like', '%'.$name.'%')->get();
+    $count = BookingAlat::where('name', 'like', '%'.$name.'%')->get()->count();
     $response = [
         
         'message'=>'Fetch All Data',
@@ -72,9 +69,9 @@ class BookingStudioController extends Controller
 }
    
 // membatalkan booking
-public function cancelBookingStudio(Request $request,$id)
+public function cancelBookingInstrument(Request $request,$id)
 {
-    $booking = BookingStudio::find($id);
+    $booking = BookingAlat::find($id);
     $booking->status_booking = $request->status_booking='Canceled';
     $booking->save();
 
@@ -89,9 +86,9 @@ public function cancelBookingStudio(Request $request,$id)
 }
 
 // menyetujui booking
-public function AcceptBookingStudio(Request $request,$id)
+public function AcceptBookingInstrument(Request $request,$id)
 {
-    $booking = BookingStudio::find($id);
+    $booking = BookingAlat::find($id);
     $booking->status_booking = $request->status_booking='Approved';
     $booking->save();
 
@@ -113,9 +110,9 @@ public function AcceptBookingStudio(Request $request,$id)
      * @return \Illuminate\Http\Response
      */
     //hapus riwayat booking
-    public function deleteBookingStudio($id)
+    public function deleteBookingInstrument($id)
     {
-        $booking = BookingStudio::destroy($id);
+        $booking = BookingAlat::destroy($id);
         $response = [
 			'message'=>'Booking has been deleted',
            
@@ -131,14 +128,14 @@ public function AcceptBookingStudio(Request $request,$id)
      * @return \Illuminate\Http\Response
      */
     //melihat semua booking
-    public function allBookingStudio()
+    public function allBookingInstrument()
     {
        
       
-            $booking = BookingStudio::all();
-            $count = BookingStudio::all()->count();
+            $booking = BookingAlat::all();
+            $count = BookingAlat::all()->count();
             $response = [
-                'message'=>'Fetch All Booking Studio List',
+                'message'=>'Fetch All Booking Instrument List',
                 'Total' => $count,
                 'List booking' => $booking
                

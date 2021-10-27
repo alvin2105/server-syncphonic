@@ -36,11 +36,10 @@ class StudioController extends Controller
             'studio_status' => 'required',
 
         ]);
-        $file = $request->file('studio_img');
-        $nama_file = time()."_".$file->getClientOriginalName();
-
-        $tujuan_upload = 'public/studio_file';
-        $file->move($tujuan_upload,$nama_file);
+        // Upload an Image File to Cloudinary with One line of Code
+        $nama_file = Cloudinary()->upload($request->file('studio_img')->getRealPath(),[
+            "folder" =>"Studio",
+        ])->getSecurePath();
 
        $input = Studio::create([
             'studio_name' =>$request->studio_name,
@@ -108,7 +107,7 @@ class StudioController extends Controller
     
         $response = [
             'message'=>'Studio Updated Succesfully',
-            'booking' => $studio,
+            'studio' => $studio,
             
             
         ];
@@ -171,6 +170,25 @@ class StudioController extends Controller
             'message'=>'Fetch All Data ',
             'Total' => $count,
             'Results' => $filterDay
+        
+         ];
+     return response($response);
+  
+    }
+     /**
+     * Search for a name
+     *
+     * @param  str  $studio_status
+     * @return \Illuminate\Http\Response
+     */
+    public function filterByName($studio_name)
+    {
+      $filterName = Studio::where('studio_name', 'like', '%'.$studio_name.'%')->get();
+      $count = Studio::where('studio_name', 'like', '%'.$studio_name.'%')->get()->count();
+      $response = [
+            'message'=>'Fetch All Data ',
+            'Total' => $count,
+            'Results' => $filterName
         
          ];
      return response($response);

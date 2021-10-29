@@ -126,4 +126,6 @@ Route::put('/booking/instrument/cancel/{id}', [BookingAlatController::class, 'ca
 
 ### ADMIN DAN USER 👮‍♂️
 
+```
 Route::post('/logout', [AuthController::class, 'logout']);
+```

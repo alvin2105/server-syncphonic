@@ -102,7 +102,7 @@ class AuthController extends Controller
 			]);
 		}
 	}
-
+//buat reset password
 	public function resetPassword(Request $request) {
 		$request->validate([
 			'token' => 'required',

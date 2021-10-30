@@ -27,8 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/forgot', [UserController::class, 'forgot']);
-Route::post('/reset', [UserController::class, 'reset']);
+Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
+Route::post('/password/reset',  [AuthController::class, 'resetPassword'])->name('password.reset');
+
 
 //list studio
 Route::get('/studio', [StudioController::class, 'index']);
@@ -87,11 +88,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
  
     //Booking Studio table
     Route::post('/booking/studio/add', [BookingStudioController::class, 'createBookingStudio']);
-    Route::get('/mystudio/{name}', [BookingStudioController::class, 'MyBookingStudio']);
+    Route::get('/mystudio/{user_id}', [BookingStudioController::class, 'MyBookingStudio']);
     Route::put('/booking/studio/cancel/{id}', [BookingStudioController::class, 'cancelBookingStudio']);
     //Booking Instrument table
     Route::post('/booking/instrument/add', [BookingAlatController::class, 'createBookingInstrument']);
-    Route::get('/myinstrument/{name}', [BookingAlatController::class, 'MyBookingInstrument']);
+    Route::get('/myinstrument/{user_id}', [BookingAlatController::class, 'MyBookingInstrument']);
     Route::put('/booking/instrument/cancel/{id}', [BookingAlatController::class, 'cancelBookingInstrument']);
        
     //ADMIN DAN USER

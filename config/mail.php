@@ -85,7 +85,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'alvin21051999@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Lupa Password - syncphonic'),
+        'name' => env('MAIL_FROM_NAME', 'Lupa Password - Syncphonic'),
     ],
 
     /*

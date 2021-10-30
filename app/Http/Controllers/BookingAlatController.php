@@ -52,11 +52,11 @@ class BookingAlatController extends Controller
     }
 
  // melihat list booking user tertentu
- public function MyBookingInstrument($name){
+ public function MyBookingInstrument($user_id){
         
     // return Booking::find($id);
-    $mybooking = BookingAlat::where('name', 'like', '%'.$name.'%')->get();
-    $count = BookingAlat::where('name', 'like', '%'.$name.'%')->get()->count();
+    $mybooking = BookingAlat::where('user_id', 'like', '%'.$user_id.'%')->get();
+    $count = BookingAlat::where('user_id', 'like', '%'.$user_id.'%')->get()->count();
     $response = [
         
         'message'=>'Fetch All Data',

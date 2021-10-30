@@ -55,11 +55,11 @@ class BookingStudioController extends Controller
     }
 
  // melihat list booking user tertentu
- public function MyBookingStudio($name){
+ public function MyBookingStudio($user_id){
         
     // return Booking::find($id);
-    $mybooking = BookingStudio::where('name', 'like', '%'.$name.'%')->get();
-    $count = BookingStudio::where('name', 'like', '%'.$name.'%')->get()->count();
+    $mybooking = BookingStudio::where('user_id', 'like', '%'.$user_id.'%')->get();
+    $count = BookingStudio::where('user_id', 'like', '%'.$user_id.'%')->get()->count();
     $response = [
         
         'message'=>'Fetch All Data',

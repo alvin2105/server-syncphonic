@@ -48,6 +48,15 @@ Route::get('/blog/category/{category}', [BlogController::class, 'filterByCategor
 Route::get('/blog/title/{title_blog}', [blogController::class, 'filterByTitle']);
 ```
 
+#### Total💯
+
+```
+Route::get('/total/user', [UserController::class, 'TotalUser']);
+Route::get('/total/studio', [StudioController::class, 'TotalStudio']);
+Route::get('/total/instrument', [InstrumentController::class, 'TotalInstrument']);
+Route::get('/total/blog', [BlogController::class, 'TotalBlog']);
+```
+
 ### Protected routes
 
 ### ADMIN Access

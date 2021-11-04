@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
 Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
 Route::post('/password/reset',  [AuthController::class, 'resetPassword'])->name('password.reset');
 
@@ -50,6 +49,13 @@ Route::get('/blog', [BlogController::class, 'index']);
 Route::get('/blog/{id}', [BlogController::class, 'detailBlog']);
 Route::get('/blog/category/{category}', [BlogController::class, 'filterByCategory']);
 Route::get('/blog/title/{title_blog}', [blogController::class, 'filterByTitle']);
+
+//total
+Route::get('/total/user', [UserController::class, 'TotalUser']);
+Route::get('/total/studio', [StudioController::class, 'TotalStudio']);
+Route::get('/total/instrument', [InstrumentController::class, 'TotalInstrument']);
+Route::get('/total/blog', [BlogController::class, 'TotalBlog']);
+
 
 
 // Protected routes

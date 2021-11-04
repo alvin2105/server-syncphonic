@@ -194,4 +194,14 @@ class StudioController extends Controller
      return response($response);
   
     }
+    public function TotalStudio()
+    {
+        $total=  Studio::all()->count();
+        $response = [
+            'Total' => $total, 
+        
+         ];
+     return response($response);
+
+    }
 }

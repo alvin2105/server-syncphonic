@@ -133,4 +133,15 @@ class UserController extends Controller
 
         return response()->json(["msg" => "Password has been successfully changed"]);
     }
+
+    public function TotalUser()
+    {
+        $total=  User::all()->count();
+        $response = [
+            'Total' => $total, 
+        
+         ];
+     return response($response);
+
+    }
 }

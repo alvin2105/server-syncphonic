@@ -209,4 +209,18 @@ class InstrumentController extends Controller
      return response($response);
   
     }
+
+    public function TotalInstrument()
+    {
+        $total=  Instrument::all()->count();
+        $response = [
+            'Total' => $total, 
+        
+         ];
+     return response($response);
+
+    }
+    //studio
+    //blog
+    //user
 }

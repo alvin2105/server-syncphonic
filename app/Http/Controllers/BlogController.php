@@ -174,4 +174,15 @@ class BlogController extends Controller
      return response($response);
   
     }
+
+    public function TotalBlog()
+    {
+        $total=  Blog::all()->count();
+        $response = [
+            'Total' => $total, 
+        
+         ];
+     return response($response);
+
+    }
 }

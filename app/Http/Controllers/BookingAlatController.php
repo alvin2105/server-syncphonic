@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\BookingAlat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\BookingAlatNotification;
+use PhpParser\Node\Expr\Cast\Array_;
+
 
 class BookingAlatController extends Controller
 {
@@ -26,22 +29,24 @@ class BookingAlatController extends Controller
      */
     public function createBookingInstrument(Request $request)
     {
+       
         $book = new BookingAlat();
         $book->name = $request->name;
-        $book->instrument_name = $request->instrument_name;
         $book->email = $request->email;
+        $book->instrument_name = $request->instrument_name;
         $book->instrument_price = $request->instrument_price;
         $book->date = $request->date;
         $book->duration = $request->duration;
         $book->instrument_id = $request->instrument_id;
         $book->user_id = $request->user_id;
-        $book->total= $request->total;
-
+        $book->total = $request->total;
         $book->save();
 
+        $book->notify(new BookingAlatNotification($book));
            $response = [
                 'message'=>'Booking Succesfully',
                 'booking' => $book,
+                'payment'=>'Silahkan cek email anda untuk detail pembayaran'
                 
                 
             
@@ -144,4 +149,5 @@ public function AcceptBookingInstrument(Request $request,$id)
             return response($response);
        
     }
+    
 }

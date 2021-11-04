@@ -22,7 +22,7 @@ class CreateBookingAlatsTable extends Migration
             $table->string('instrument_name');
             $table->string('instrument_price');
             $table->date('date');
-            $table->integer('duration');
+            $table->integer('duration')->default('1');
             $table->double('total');
             $table->string('status_booking')->default('Pending');
             $table->timestamps();

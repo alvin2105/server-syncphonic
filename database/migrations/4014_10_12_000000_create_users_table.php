@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('telp_number');
             $table->string('gender');
             $table->string('address');
-            $table->string('photo_profile')->default('photo.jpg');
+            $table->string('photo_profile')->default('https://res.cloudinary.com/syncphonic/image/upload/v1635947805/Avatars_Default_with_Backdrop_ylbosx.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

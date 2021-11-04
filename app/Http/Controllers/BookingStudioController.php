@@ -5,8 +5,10 @@ use App\Models\BookingStudio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Notifications\BookingStudioNotification;
 
 class BookingStudioController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -39,14 +41,14 @@ class BookingStudioController extends Controller
         $book->studio_id = $request->studio_id;
         $book->user_id = $request->user_id;
         $book->total= $request->total;
-
         $book->save();
-
+       
+        $book->notify(new BookingStudioNotification($book));
            $response = [
-                'message'=>'Booking Succesfully',
+                'status'=>'Booking Succesfully',
                 'booking' => $book,
-                
-                
+                'message' => 'Silahkan cek email kamu untuk detail pembayaran '
+  
             
             ];
             

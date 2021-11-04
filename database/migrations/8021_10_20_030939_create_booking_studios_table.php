@@ -22,7 +22,7 @@ class CreateBookingStudiosTable extends Migration
             $table->string('studio_name');
             $table->string('studio_price');
             $table->date('date');
-            $table->integer('duration');
+            $table->integer('duration')->default('1');
             $table->double('total');
             $table->string('status_booking')->default('Pending');
             $table->timestamps();

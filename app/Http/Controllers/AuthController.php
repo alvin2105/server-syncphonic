@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\WelcomeEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -34,7 +35,7 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
-
+        $user->notify(new WelcomeEmailNotification($user));
         $response = [
 			'message'=>'Register Succesfully',
             'users' => $user,
@@ -99,6 +100,7 @@ class AuthController extends Controller
 		} else {
 			throw ValidationException::withMessages([
 				'email' => __($status)
+                
 			]);
 		}
 	}

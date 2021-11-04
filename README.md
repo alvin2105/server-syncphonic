@@ -15,8 +15,8 @@ https://documenter.getpostman.com/view/9474608/UV5ZBbq2
 ```
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/forgot', [UserController::class, 'forgot']);
-Route::post('/reset', [UserController::class, 'reset']);
+Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
+Route::post('/password/reset',  [AuthController::class, 'resetPassword'])->name('password.reset');
 ```
 
 #### List Studio 🎶

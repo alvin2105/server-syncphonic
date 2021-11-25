@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//coba
+Route::post('/studio/add', [StudioController::class, 'addStudio']);
+Route::post('/studio/update/{id}', [StudioController::class, 'updateStudio']);
 
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);

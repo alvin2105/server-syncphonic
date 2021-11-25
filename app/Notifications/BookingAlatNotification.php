@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -47,10 +48,10 @@ class BookingAlatNotification extends Notification
         ->line('Selamat pesanan anda berhasil dibuat 🎉.')
         ->line('')
         ->line('berikut adalah detail dari pesanan anda : ')
-        ->line('Nama Studio : '.$this->book->instrument_name)
-        ->line('Harga Studio : '.$this->book->total)
-        ->line('Tanggal : '.$this->book->date)
-        ->line('Durasi (dalam satuan jam) : '.$this->book->duration)
+        ->line('Nama Alat : '.$this->book->instrument_name)
+        ->line('Harga Sewa Alat : '.$this->book->total)
+        ->line('Tanggal Sewa : '.$this->book->date)
+        ->line('Durasi (dalam satuan hari) : '.$this->book->duration)
         ->line('')
         ->line('Silahkan lakukan pembayaran melalui e-wallet dibawah ini atau Pembayaran Langsung ditempat')
         ->line('Gopay - A.n Synpchonic (083147120547)')
@@ -58,7 +59,9 @@ class BookingAlatNotification extends Notification
         ->line('OVO - A.n Synpchonic (083147120547)')
         ->line('')
         ->line('')
-        ->line('Silahkan cek dashboard anda untuk melihat status penyewaan ');
+        ->line('Silahkan cek dashboard anda untuk melihat status penyewaan ')
+        ->line('')
+        ->line('⛔ Denda akan dikenakan apabila terlambat dalam mengembalikan alat ⛔');
     }
 
     /**

@@ -18,7 +18,7 @@ class StudioController extends Controller
         return Studio::all();
     }
 
-    /**
+    /** Menggunakan image hosting
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -53,6 +53,82 @@ class StudioController extends Controller
         ]);
         $response = [
             'message'=>'Studio Added Succesfully',
+            'studio' => $input,
+            
+            
+        ];
+
+         return response($response); 
+
+      
+            
+    }
+
+      /** Tanpa image hosting
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addStudio(Request $request)
+    {
+        $input=$request->validate([
+            'studio_name' => 'required',
+            'studio_desc' => 'required',
+            'studio_capacity' => 'required',
+            'studio_price' => 'required',
+            'studio_img' => 'image|file|max:1024',
+            'studio_available_day' => 'required',
+            'studio_status' => 'required',
+
+        ]);
+        // manual upload no hosting
+        if($request->file('studio_img')){
+            $input['studio_img'] = $request->file('studio_img')->store('studio_file');
+        }
+
+        Studio::create($input);
+        $response = [
+            'message'=>'Studio Added Succesfully',
+            'studio' => $input,
+            
+            
+        ];
+
+         return response($response); 
+
+      
+            
+    }
+
+      /** Tanpa image hosting
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStudio(Request $request, $id)
+    {
+        $input=Studio::find($id);
+        $input=$request->validate([
+            'studio_name' => 'required',
+            'studio_desc' => 'required',
+            'studio_capacity' => 'required',
+            'studio_price' => 'required',
+            'studio_img' => 'image|file|max:1024',
+            'studio_available_day' => 'required',
+            'studio_status' => 'required',
+
+        ]);
+        // manual upload no hosting
+        if($request->file('studio_img')){
+            $input['studio_img'] = $request->file('studio_img')->store('studio_file');
+        }
+
+        Studio::where('id')
+            ->update($input);
+        $response = [
+            'message'=>'Studio Update Succesfully',
             'studio' => $input,
             
             

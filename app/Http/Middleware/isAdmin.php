@@ -16,7 +16,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->name !== 'admin'){
+        if(!auth()->check() || auth()->user()->isAdmin !== '1'){
             // abort(403);
             $response = [
                 'message'=>'Admin acces required',

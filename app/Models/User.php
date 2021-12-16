@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Middleware\isAdmin;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'telp_number',
         'address',
         'password',
+        'isAdmin',
     ];
 
     /**
@@ -50,10 +52,10 @@ class User extends Authenticatable
         return $this->hasMany(Instrument::class);
     }
 
-    public function course() //N to N
+   /* public function course() //N to N
     {
          return $this->belongsToMany(Course::class);
-    }
+    }*/
 
     public function studio() //N to 1
     {

@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
 
 
             $table->foreign('studio_id')->references('id')->on('studios');
-            $table->foreign('course_id')->references('id')->on('courses');
+           // $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('instrument_id')->references('id')->on('instruments');
 
         });
